@@ -14,6 +14,7 @@ example.com:
   - /srv/docker/docker-sitehosting/example.com/log/supervisor/:/var/log/supervisor
   - /srv/docker/docker-sitehosting/example.com/letsencrypt:/var/www/letsencrypt:ro
   - /srv/docker/docker-sitehosting/example.com/sftpdev-home:/home/sftpdev
+  - /srv/docker/docker-sitehosting/crontabs/:/var/spool/cron/:rw
  ports:
   - "1089:80"
  command: "/usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
