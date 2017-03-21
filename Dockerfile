@@ -5,7 +5,7 @@ RUN apt-get install wget -y
 RUN wget https://github.com/libgd/libgd/releases/download/gd-2.1.1/libgd-2.1.1.tar.gz
 RUN tar zxvf libgd-2.1.1.tar.gz
 WORKDIR /usr/src/libgd-2.1.1
-RUN apt-get install gcc make libjpeg-dev libpng-dev libtiff-dev libvpx-dev libxpm-dev libfontconfig1-dev libxpm-dev checkinstall -y
+RUN apt-get install cron gcc make libjpeg-dev libpng-dev libtiff-dev libvpx-dev libxpm-dev libfontconfig1-dev libxpm-dev checkinstall -y
 RUN ./configure
 RUN make
 RUN checkinstall --pkgname=libgd3
