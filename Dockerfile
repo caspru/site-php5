@@ -55,8 +55,8 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -C /var/www/.msmtprc  -t"' > /usr/loca
 ADD start.sh /
 CMD ["/start.sh"]
 
+WORKDIR /home/sftpdev
 
-#WORKDIR /usr/src
 #RUN apt-get install wget -y
 #RUN wget https://github.com/libgd/libgd/releases/download/gd-2.1.1/libgd-2.1.1.tar.gz
 #RUN tar zxvf libgd-2.1.1.tar.gz
