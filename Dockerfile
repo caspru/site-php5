@@ -38,8 +38,10 @@ ADD supervisord.conf /etc/supervisor/
 #RUN /usr/bin/ssh-keygen -A
 
 RUN useradd -d /home/sftpdev/ -s /bin/bash -o -g 33 -u 33 sftpdev; \
+    usermod -d /home/sftpdev/ www-data && \
     echo "sftpdev ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 
 
 RUN mkdir /var/run/sshd; chmod 0755 /var/run/sshd
