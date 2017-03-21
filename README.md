@@ -27,8 +27,9 @@ Add ssh key to file /srv/docker/docker-sitehosting/example.com/sftpdev-home/.ssh
 And after login:
 ```
 sudo supervisorctl status
-apache2                          RUNNING    pid 11, uptime 8 days, 0:45:32
-nginx                            RUNNING    pid 9, uptime 8 days, 0:45:33
-sshd                             RUNNING    pid 10, uptime 8 days, 0:45:32
+apache2                          RUNNING    pid 27, uptime 0:24:53
+cron                             FATAL      Exited too quickly (process log may have details)
+nginx                            RUNNING    pid 16, uptime 0:24:54
+sshd                             RUNNING    pid 17, uptime 0:24:54
 ```
 
