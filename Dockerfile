@@ -52,6 +52,10 @@ RUN echo "DOCKER PHP_VERSION=$PHP_VERSION; BUILD DATE: `date -I`" > /etc/motd
 
 RUN echo 'sendmail_path = "/usr/bin/msmtp -C /var/www/.msmtprc  -t"' > /usr/local/etc/php/conf.d/sendmail-msmtp.ini
 
+ADD start.sh /
+CMD ["/stat.sh"]
+
+
 #WORKDIR /usr/src
 #RUN apt-get install wget -y
 #RUN wget https://github.com/libgd/libgd/releases/download/gd-2.1.1/libgd-2.1.1.tar.gz
