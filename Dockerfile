@@ -40,6 +40,7 @@ ADD supervisord.conf /etc/supervisor/
 RUN useradd -d /home/sftpdev/ -s /bin/bash -o -g 33 -u 33 sftpdev; \
     usermod -d /home/sftpdev/ www-data && \
     echo "sftpdev ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers; \
+    ln -s /var/www/html/ /home/sftpdev/ ; \
     echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 
