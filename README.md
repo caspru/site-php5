@@ -24,7 +24,7 @@ example.com:
 ```
 Add ssh key to file /srv/docker/docker-sitehosting/example.com/sftpdev-home/.ssh/authorized_keys and login remote by server ip and port 2200.
 
-After login:
+And after login:
 ```
 sudo supervisorctl status
 apache2                          RUNNING    pid 11, uptime 8 days, 0:45:32
