@@ -17,10 +17,12 @@ example.com:
   - /srv/docker/docker-sitehosting/crontabs/:/var/spool/cron/:rw
  ports:
   - "1089:80"
+  - "2200:22"
  command: "/usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
  external_links:
   - mysql_local
 ```
+Add ssh key to file /srv/docker/docker-sitehosting/example.com/sftpdev-home/.ssh/authorized_keys and login remote by server ip and port 2200.
 
 After login:
 ```
