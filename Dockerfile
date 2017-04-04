@@ -48,7 +48,7 @@ ADD apache-security.conf /etc/apache2/conf-enabled/security.conf
 
 ADD supervisord.conf /etc/supervisor/
 
-#RUN /usr/bin/ssh-keygen -A
+RUN /usr/bin/ssh-keygen -A
 
 RUN useradd -d /home/sftpdev/ -s /bin/bash -o -g 33 -u 33 sftpdev; \
     usermod -d /home/sftpdev/ www-data && \
