@@ -70,6 +70,8 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -C /var/www/.msmtprc  -t"' > /usr/loca
 
 WORKDIR /home/sftpdev
 
+RUN ln -s /usr/local/lib/libgd.so.3 /usr/lib/x86_64-linux-gnu/libgd.so.3
+
 ADD start.sh /
 CMD ["/start.sh"]
 
