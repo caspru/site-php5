@@ -21,6 +21,8 @@ example.com:
  command: "/usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
  external_links:
   - mysql_local
+ environment:
+  - SFTPDEV_PASSWD=mysshpasswd
 ```
 Add ssh key to file /srv/docker/docker-sitehosting/example.com/sftpdev-home/.ssh/authorized_keys and login remote by server ip and port 2200.
 
