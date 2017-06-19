@@ -11,6 +11,7 @@ apt-get install -y wget nginx supervisor libapache2-mod-rpaf sudo git mc net-too
         libcurl4-openssl-dev \
         libpspell-dev \
         libtidy-dev \
+	libgeoip-dev \
         libxslt1-dev 
 
 WORKDIR /usr/src
@@ -22,25 +23,17 @@ WORKDIR /usr/src/libgd-2.1.1
 RUN ./configure
 RUN make
 RUN checkinstall --pkgname=libgd3
-#RUN apt-get update && apt-get install -y \
-#        libfreetype6-dev \
-#        libjpeg62-turbo-dev \
-#        libmcrypt-dev \
-#        libpng12-dev \
-#        libxml2 \
-#        libxml2-dev \
-#        libcurl4-openssl-dev \
-#        libpspell-dev \
-#        libtidy-dev \
-#        libxslt1-dev \
-RUN docker-php-ext-install iconv mcrypt \
+RUN docker-php-ext-install\
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-gd=/usr/src/libgd-2.1.1/src/ \
     && docker-php-ext-install gd 
-RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstring mysqli opcache posix pspell  session shmop simplexml  soap sockets
-RUN docker-php-ext-install tidy tokenizer wddx 
-RUN docker-php-ext-install xsl zip
-RUN docker-php-ext-install pdo pdo_mysql 
-RUN docker-php-ext-install xml  xmlrpc xmlwriter 
+RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstring mysqli opcache posix pspell  session shmop simplexml  soap sockets \
+	tidy tokenizer wddx iconv mcrypt \
+	xsl zip \
+	pdo pdo_mysql \ 
+	xml  xmlrpc xmlwriter 
+
+RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d/geoip.ini
+RUN pecl install memcache && echo "extension=memcache.so" >> /usr/local/etc/php/conf.d/memcache.ini
 
 
 RUN a2enmod rpaf rewrite
