@@ -33,7 +33,8 @@ RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d
 	&&  pecl install memcache && echo "extension=memcache.so" >> /usr/local/etc/php/conf.d/memcache.ini
 
 
-RUN a2enmod rpaf rewrite && apache-security.conf /etc/apache2/conf-enabled/security.conf
+ADD apache-security.conf /etc/apache2/conf-enabled/security.conf 
+RUN a2enmod rpaf rewrite  
 
 ADD supervisord.conf /etc/supervisor/
 
