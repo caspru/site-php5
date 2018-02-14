@@ -23,6 +23,8 @@ example.com:
   - mysql_local
  environment:
   - SFTPDEV_PASSWD=mysshpasswd
+  - WEB_DOCUMENTROOT=/var/www/html/deploy/current # default /var/www/html
+  - STATIC_BY_NGINX=1 #static send nginx (default 0)
 ```
 Add ssh key to file /srv/docker/docker-sitehosting/example.com/sftpdev-home/.ssh/authorized_keys and login remote by server ip and port 2200.
 

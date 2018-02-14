@@ -9,5 +9,16 @@ echo "sftpdev:$SFTPDEV_PASSWD" | chpasswd
 sed -i "s/_WEB_DOCUMENTROOT_/$WEB_DOCUMENTROOT/a"g /etc/apache2/sites-enabled/apache-default-vhost.conf
 sed -i "s/_WEB_DOCUMENTROOT_/$WEB_DOCUMENTROOT/a"g /etc/nginx/nginx.conf
 
+
+if [ "$STATIC_BY_NGINX" == "1" ]; then
+	sed -i '/^#STATIC//g' /etc/nginx/nginx.conf
+fi
+
+
 /usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+
+
+
+
+
 
