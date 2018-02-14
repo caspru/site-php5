@@ -53,6 +53,8 @@ WORKDIR /home/sftpdev/
 RUN mkdir /var/run/sshd; chmod 0755 /var/run/sshd \
 	&&  sed -i "s/Listen 80/Listen 81/g" /etc/apache2/ports.conf
 
+RUN rm -rf /etc/apache2/sites-enabled/*
+ADD apache-default-vhost.conf /etc/apache2/sites-enabled/
 ADD nginx.conf /etc/nginx/
 
 RUN echo "DOCKER PHP_VERSION=$PHP_VERSION; BUILD DATE: `date -I`" > /etc/motd
