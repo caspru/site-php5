@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 echo Prepare to start!
 echo Fixing permissions...
 chown -R 33:33 /home/sftpdev/ /var/www/html ; chmod 700 /home/sftpdev/
@@ -12,7 +12,7 @@ if [ -e SFTPDEV_PASSWD ]; then
 	echo "sftpdev:$SFTPDEV_PASSWD" | chpasswd
 fi
 
-[ ! -e $WEB_DOCUMENTROOT ] && export WEB_DOCUMENTROOT=/var/www/html
+[ -z $WEB_DOCUMENTROOT ] && export WEB_DOCUMENTROOT=/var/www/html
 
 echo Set WEB_DOCUMENTROOT to $WEB_DOCUMENTROOT ...
 sed -i "s,_WEB_DOCUMENTROOT_,$WEB_DOCUMENTROOT,g" /etc/apache2/sites-enabled/apache-default-vhost.conf
@@ -25,6 +25,7 @@ if [ "$STATIC_BY_NGINX" == "1" ]; then
 fi
 
 echo Starting supervisord...
+echo
 /usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
 

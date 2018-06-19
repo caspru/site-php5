@@ -12,7 +12,8 @@ apt-get install -y wget nginx supervisor libapache2-mod-rpaf sudo git mc net-too
         libpspell-dev \
         libtidy-dev \
 	libgeoip-dev \
-        libxslt1-dev 
+        libxslt1-dev \
+	libicu-dev
 
 WORKDIR /usr/src
 RUN wget https://github.com/libgd/libgd/releases/download/gd-2.1.1/libgd-2.1.1.tar.gz && tar zxvf libgd-2.1.1.tar.gz
@@ -27,7 +28,8 @@ RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstrin
 	tidy tokenizer wddx iconv mcrypt \
 	xsl zip \
 	pdo pdo_mysql \ 
-	xml  xmlrpc xmlwriter 
+	xml  xmlrpc xmlwriter \
+        exif intl
 
 RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d/geoip.ini \
 	&&  pecl install memcache && echo "extension=memcache.so" >> /usr/local/etc/php/conf.d/memcache.ini
