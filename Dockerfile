@@ -24,7 +24,7 @@ RUN ./configure; make &&  checkinstall --pkgname=libgd3 \
 	&&  ln -s /usr/local/lib/libgd.so.3 /usr/lib/x86_64-linux-gnu/libgd.so.3
 
 
-RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstring mysqli opcache posix pspell  session shmop simplexml  soap sockets \
+RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstring mysqli mysql opcache posix pspell  session shmop simplexml  soap sockets \
 	tidy tokenizer wddx iconv mcrypt \
 	xsl zip \
 	pdo pdo_mysql \ 
