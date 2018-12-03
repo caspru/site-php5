@@ -5,7 +5,6 @@ apt-get install -y wget nginx supervisor libapache2-mod-rpaf sudo git mc net-too
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
         libxml2 \
         libxml2-dev \
         libcurl4-openssl-dev \
@@ -15,21 +14,13 @@ apt-get install -y wget nginx supervisor libapache2-mod-rpaf sudo git mc net-too
         libxslt1-dev \
 	libicu-dev
 
-WORKDIR /usr/src
-RUN wget https://github.com/libgd/libgd/releases/download/gd-2.1.1/libgd-2.1.1.tar.gz && tar zxvf libgd-2.1.1.tar.gz
-WORKDIR /usr/src/libgd-2.1.1
-RUN ./configure; make &&  checkinstall --pkgname=libgd3 \
-	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-gd=/usr/src/libgd-2.1.1/src/ \
-    	&& docker-php-ext-install gd \
-	&&  ln -s /usr/local/lib/libgd.so.3 /usr/lib/x86_64-linux-gnu/libgd.so.3
-
 
 RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstring mysqli mysql opcache posix pspell  session shmop simplexml  soap sockets \
 	tidy tokenizer wddx iconv mcrypt \
 	xsl zip \
 	pdo pdo_mysql \ 
 	xml  xmlrpc xmlwriter \
-        exif intl
+        exif intl gd
 
 RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d/geoip.ini \
 	&&  pecl install memcache && echo "extension=memcache.so" >> /usr/local/etc/php/conf.d/memcache.ini
