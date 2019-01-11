@@ -20,7 +20,9 @@ RUN docker-php-ext-install bcmath ctype curl dom gettext hash iconv json mbstrin
 	xsl zip \
 	pdo pdo_mysql \ 
 	xml  xmlrpc xmlwriter \
-        exif intl gd
+        exif intl 
+RUN docker-php-ext-configure gd  --with-jpeg-dir --with-freetype-dir; \
+    docker-php-ext-install gd
 
 RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d/geoip.ini \
 	&&  pecl install memcache && echo "extension=memcache.so" >> /usr/local/etc/php/conf.d/memcache.ini
