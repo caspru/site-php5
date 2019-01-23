@@ -12,7 +12,7 @@ if [ ! -z $SFTPDEV_PASSWD ]; then
 	echo "sftpdev:$SFTPDEV_PASSWD" | chpasswd
 fi
 
-if [ ! -z $PUBKEY ]; then
+if [ ! -z "$PUBKEY" ]; then
   mkdir /home/$USER_NAME/.ssh
   echo $PUBKEY > /home/$USER_NAME/.ssh/authorized_keys && sed -i "s/'//g; s/+AND+/\n/g" /home/$USER_NAME/.ssh/authorized_keys
   chmod 0600 /home/$USER_NAME/.ssh/authorized_keys
