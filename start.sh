@@ -17,10 +17,10 @@ if [ ! -z "$PUBKEY" ]; then
   echo $PUBKEY > /home/sftpdev/.ssh/authorized_keys && sed -i "s/'//g; s/+AND+/\n/g" /home/sftpdev/.ssh/authorized_keys
   chmod 0700 /home/sftpdev/.ssh/
   chmod 0600 /home/sftpdev/.ssh/authorized_keys
-  chown -R sftpdev:sftpdev /home/sftpdev/.ssh
+  chown -R sftpdev /home/sftpdev/.ssh
 fi
 
-chown -R sftpdev:sftpdev  /home/sftpdev
+chown -R sftpdev  /home/sftpdev
 
 [ -z $WEB_DOCUMENTROOT ] && export WEB_DOCUMENTROOT=/var/www/html
 
