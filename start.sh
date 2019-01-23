@@ -12,6 +12,14 @@ if [ ! -z $SFTPDEV_PASSWD ]; then
 	echo "sftpdev:$SFTPDEV_PASSWD" | chpasswd
 fi
 
+if [ ! -z $PUBKEY ]; then
+  mkdir /home/$USER_NAME/.ssh
+  echo $PUBKEY > /home/$USER_NAME/.ssh/authorized_keys && sed -i "s/'//g; s/+AND+/\n/g" /home/$USER_NAME/.ssh/authorized_keys
+  chmod 0600 /home/$USER_NAME/.ssh/authorized_keys
+fi
+
+chown -R $USERID:$USERID /home/$USER_NAME
+
 [ -z $WEB_DOCUMENTROOT ] && export WEB_DOCUMENTROOT=/var/www/html
 
 echo Set WEB_DOCUMENTROOT to $WEB_DOCUMENTROOT ...
