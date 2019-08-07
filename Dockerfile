@@ -31,6 +31,11 @@ RUN pecl install geoip && echo "extension=geoip.so" >> /usr/local/etc/php/conf.d
 ADD apache-security.conf /etc/apache2/conf-enabled/security.conf 
 RUN a2enmod rpaf rewrite headers
 
+
+
+RUN echo "RPAFenable On" > /etc/apache2/conf-enabled/remoteip.conf; \
+    echo "RPAFproxy_ips 127.0.0.1 172.17.0.1" >> /etc/apache2/conf-enabled/remoteip.conf
+
 ADD supervisord.conf /etc/supervisor/
 
 RUN /usr/bin/ssh-keygen -A
